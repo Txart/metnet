@@ -57,8 +57,11 @@ dt = SOIL_DEPTH/TIMESTEPS
 g_random = nx.gnm_random_graph(n=N_NODES, m=N_EDGES); g_random.name = 'random'
 PREFERENTIAL_NEW_EDGES = int(N_NODES/N_EDGES) # this makes same number of edges as the random, if N_EDGES is a multiple of N_NODES
 g_barabasi_albert = nx.barabasi_albert_graph(n=N_NODES, m=PREFERENTIAL_NEW_EDGES); g_barabasi_albert.name = 'preferential attachment'
+R_ARY = 2 # Number of children of each node for the tree
+g_rary_tree = nx.full_rary_tree(n=N_NODES, r=R_ARY); g_rary_tree.name = 'full tree'
+g_random_tree = nx.random_tree(n=N_NODES); g_random_tree.name = 'random tree'
 
-graphs = tuple([g_random, g_barabasi_albert])
+graphs = tuple([g_random, g_barabasi_albert, g_rary_tree, g_random_tree])
 # Add properties to nodes: depth, o2.
 surface_nodes = {}
 graph_list = [(i,graph.name) for i,graph in enumerate(graphs)]
