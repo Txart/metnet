@@ -123,13 +123,18 @@ import matplotlib.pyplot as plt
 #labels = [l.get_label() for l in plots]
 #ax1.legend(plots, labels, loc=0)
 
-fig, ax = plt.subplots()
+fig, (ax1,ax2) = plt.subplots(1,2)
 for graph in graphs:
     data = np.array(data_over_time[graph.name])
-    ax.set_ylabel('WT depth')
-    ax.set_xlabel('Fraction of air filled pores')
+    ax1.set_ylabel('WT depth')
+    ax1.set_xlabel('Fraction of air filled pores')
     
-    ax.plot(data[:,0], -data[:,1], label=graph.name)
+    ax1.plot(data[:,0], -data[:,1], label=graph.name)
+    
+    ax2.set_ylabel('WTdepth')
+    ax2.set_xlabel('Cumulative fraction of air filled pores')
+    
+    ax2.plot(np.cumsum(data[:,0]), -data[:,1], label=graph.name)
 
 ## Plot table as well
 #network_stats = [[len(graph.edges)] for graph in graphs]
